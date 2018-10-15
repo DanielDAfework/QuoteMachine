@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script>
+    
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+    
+    <script src="sketch.js"></script>
+  <body>
+  
+    <div class = "w3-container w3-center w3-black w3-card">
+      <h1> Quote Machine</h1> 
+    </div>
+      <div class = "r w3-row-padding">
+    <button id = "submit">Click to get a
+      Quote</button>
+    </div>
+        
+        
+  </body>
+  <script>
+  var quotes = "Welcome to the Quote Machine";
+var text;
+function setup() { 
+  loadJSON("https://talaikis.com/api/quotes/random/", gotData);
+  //createCanvas(400, 400);
+  //print("setup function!");
+  text = createP(quotes).id('q');
+  var button = select('#submit');
+  button.mousePressed(showQuote);
+} 
+function gotData(data){
+  quotes = data.quote + "<br/>" + " -" + data.author;
+  
+  
+}
+function showQuote(){
+  removeElements();
+  loadJSON("https://talaikis.com/api/quotes/random/", gotData);
+ createP(quotes).id('q').div('r');//.position(100,100);
+ 
+ 
+ 
+  
+}
+
+
+  </script>
+  <style>
+  html, body {
+  margin: 0;
+  padding: 0;
+  background-color:pink;
+}
+
+#q{
+  
+  text-align: left;
+  color: black;
+  padding:50px;
+  font-style: oblique;
+  font-size: 30px;
+}
+.r{
+  text-align:center;
+  position:relative;
+  font-size: 20px;
+  top:600px;
+  
+}
+
+  </style>
+</html>
